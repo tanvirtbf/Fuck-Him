@@ -13,7 +13,7 @@
 - [x] Phase 2 — Layout Shell (Navbar, Footer, Theme toggle, scroll-spy) — ✅ 2026-11-15
 - [x] Phase 3 — Home / Hero — ✅ 2026-11-15
 - [x] Phase 4 — About — ✅ 2026-11-15
-- [ ] Phase 5 — Skills
+- [x] Phase 5 — Skills — ✅ 2026-11-15
 - [ ] Phase 6 — Projects
 - [ ] Phase 7 — Experience & Journey
 - [ ] Phase 8 — Vision

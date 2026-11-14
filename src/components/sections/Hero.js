@@ -4,6 +4,7 @@ import { profile } from "@/data/profile";
 import Button from "@/components/ui/Button";
 import SocialLinks from "@/components/ui/SocialLinks";
 import { ShapeField, Wireframe } from "@/components/ui/shapes";
+import { cn } from "@/lib/cn";
 
 // Floating Memphis shapes (demo panel 1). The name can be long, so section
 // shapes stay on the outer edges; every position was checked against text
@@ -77,6 +78,14 @@ export default function Hero() {
 
         <div className="relative z-10 mb-[calc(var(--photo-w)*-0.5)] aspect-4/5 w-(--photo-w) shrink-0">
           <ShapeField shapes={photoShapes} clip={false} />
+          {/* Framed (non-cutout) photo: the polyhedron sits BEHIND it, a bit
+              larger, so it frames the photo without crossing the face. */}
+          {!photo.cutout && (
+            <Wireframe
+              strokeWidth={4}
+              className="pointer-events-none absolute top-[-11%] left-1/2 h-auto w-[128%] -translate-x-1/2 text-ink"
+            />
+          )}
           <Image
             src={photo.src}
             alt={photo.alt}
@@ -85,19 +94,25 @@ export default function Hero() {
             loading="eager"
             fetchPriority="high"
             sizes="(min-width: 1024px) 336px, 30vw"
-            className="absolute inset-0 size-full object-contain object-bottom"
+            className={cn(
+              "absolute inset-0 size-full",
+              photo.cutout ? "object-contain object-bottom" : "object-cover",
+            )}
           />
           {/* purple tint on the part of the photo below the colour split */}
           <div aria-hidden="true" className="absolute inset-0 bg-purple mix-blend-multiply" style={mask} />
-          <Wireframe
-            strokeWidth={5}
-            className="pointer-events-none absolute top-[2%] left-1/2 h-auto w-[104%] -translate-x-1/2 text-ink"
-          />
+          {/* Cut-out photo (demo look): the polyhedron goes on top */}
+          {photo.cutout && (
+            <Wireframe
+              strokeWidth={5}
+              className="pointer-events-none absolute top-[2%] left-1/2 h-auto w-[104%] -translate-x-1/2 text-ink"
+            />
+          )}
         </div>
       </div>
 
       {/* ---------------- purple band: intro + actions ---------------- */}
-      <div className="surface-dark bg-purple px-4 pt-[calc(var(--photo-w)*0.5+2rem)] pb-16 text-white sm:px-6 lg:min-h-[calc(var(--photo-w)*0.5+4rem)] lg:pt-12 lg:pb-12">
+      <div className="surface-dark bg-purple px-4 pt-[calc(var(--photo-w)*0.5+3rem)] pb-16 text-white sm:px-6 lg:min-h-[calc(var(--photo-w)*0.5+4rem)] lg:pt-12 lg:pb-12">
         <div className="relative z-10 mx-auto grid max-w-site items-start gap-8 lg:grid-cols-[1fr_var(--photo-w)_1fr] lg:gap-12 lg:px-2">
           <p className="mx-auto max-w-md text-center text-base leading-relaxed lg:col-start-1 lg:mr-0 lg:text-right">
             {intro}

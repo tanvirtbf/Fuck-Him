@@ -64,7 +64,11 @@ export default function About() {
                   width={photo.width}
                   height={photo.height}
                   sizes="(min-width: 1024px) 440px, 384px"
-                  className="absolute inset-x-0 bottom-0 h-[92%] w-full object-contain object-bottom"
+                  className={
+                    photo.cutout
+                      ? "absolute inset-x-0 bottom-0 h-[92%] w-full object-contain object-bottom"
+                      : "absolute inset-0 size-full object-cover"
+                  }
                 />
               </div>
             </Reveal>

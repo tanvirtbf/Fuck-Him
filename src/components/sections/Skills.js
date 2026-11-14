@@ -8,21 +8,22 @@ import Reveal from "@/components/ui/Reveal";
 import { ShapeField, DotGrid, Wireframe } from "@/components/ui/shapes";
 import { cn } from "@/lib/cn";
 
-// Bento layout + accent per known group id. Unknown ids get a normal tile.
+// Bento layout + accent per known group id (data order: ai, frontend,
+// backend, database, tools). Unknown ids get a normal tile.
 //   lg:  [ AI (tall) ][ Frontend (wide)   ]
 //        [ AI        ][ Backend ][Database]
 //        [ Tools & DevOps (full width)    ]
 const LAYOUT = {
+  ai: { span: "md:col-span-2 lg:col-span-1 lg:row-span-2", accent: "" },
   frontend: { span: "md:col-span-2 lg:col-span-2", accent: "border-cyan" },
   backend: { span: "", accent: "border-purple" },
-  database: { span: "", accent: "border-navy" },
-  ai: { span: "md:col-span-2 lg:col-span-1 lg:col-start-1 lg:row-span-2 lg:row-start-1", accent: "" },
+  database: { span: "", accent: "border-olive" },
   tools: { span: "md:col-span-2 lg:col-span-3", accent: "border-pink" },
 };
 
 const shapes = [
   { type: "ring", right: "4%", y: "6%", size: 34, color: "text-pink", delay: 0.4 },
-  { type: "dash", right: "16%", y: "4%", size: 26, rotate: 25, color: "text-navy", delay: 1.4, hideOnMobile: true },
+  { type: "dash", right: "16%", y: "4%", size: 26, rotate: 25, color: "text-purple", delay: 1.4, hideOnMobile: true },
   { type: "squiggle", x: "2%", bottom: "3%", size: 46, rotate: -8, color: "text-olive", delay: 2, hideOnMobile: true },
   { type: "dot", right: "2%", bottom: "8%", size: 12, color: "text-purple", delay: 1, hideOnMobile: true },
 ];

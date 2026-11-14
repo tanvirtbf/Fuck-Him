@@ -32,23 +32,27 @@ export const profile = {
     "TODO: paragraph 3 — how you like to work / what you care about.",
   ],
 
-  // Photos live in /public/images. Use WebP for real photos.
+  // Photos live in /public/images (WebP, 4:5 portrait crops).
+  // cutout: true  → transparent-background photo (floats like in the demo)
+  // cutout: false → normal photo with its background (shown as a framed photo)
+  // Source: image.png in the project root, cropped by Claude (Phase 5).
+  // For the exact demo look, give a background-removed PNG and set cutout: true.
   photos: {
-    // Hero: waist-up portrait with a TRANSPARENT background (cut-out),
-    // about 4:5 (e.g. 800x1000). It sits across the cyan/purple split.
+    // Hero: sits across the cyan/purple split
     hero: {
-      src: "/images/hero-placeholder.svg", // TODO: /images/hero.webp
-      alt: "TODO: describe the photo, e.g. Portrait of <your name>",
-      width: 800,
-      height: 1000,
+      src: "/images/hero.webp",
+      alt: "Portrait in a black cap, sunglasses and a white T-shirt", // TODO: add your name, e.g. "Portrait of <name>, …"
+      width: 340,
+      height: 425,
+      cutout: false,
     },
-    // About: shown inside a light-grey card. A cut-out (transparent) photo
-    // looks best, like the demo; it can be the same file as the hero.
+    // About: shown inside the light-grey card
     about: {
-      src: "/images/hero-placeholder.svg", // TODO: /images/about.webp
-      alt: "TODO: describe the photo",
-      width: 800,
-      height: 1000,
+      src: "/images/about.webp",
+      alt: "Portrait outdoors under a cloudy sky, wearing a black cap, sunglasses and a white T-shirt", // TODO: add your name
+      width: 440,
+      height: 550,
+      cutout: false,
     },
   },
 
