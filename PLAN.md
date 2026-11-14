@@ -9,7 +9,7 @@
 ## 0. Status Tracker
 
 - [x] Phase 0 — Project Setup (Next.js scaffold, static export, folder structure) — ✅ 2026-11-15
-- [ ] Phase 1 — Design System (colors, fonts, shapes, UI primitives)
+- [x] Phase 1 — Design System (colors, fonts, shapes, UI primitives) — ✅ 2026-11-15
 - [ ] Phase 2 — Layout Shell (Navbar, Footer, Theme toggle, scroll-spy)
 - [ ] Phase 3 — Home / Hero
 - [ ] Phase 4 — About

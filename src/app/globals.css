@@ -1,17 +1,176 @@
 @import "tailwindcss";
 
-/*
- * Phase 0: minimal base only.
- * Design tokens (colors, fonts, light/dark theme) are added in Phase 1.
- */
+/* `dark:` variant follows the data-theme attribute (set by the inline theme script). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-:root {
-  --background: #f8f8f6;
-  --foreground: #111111;
+/* =============================================================================
+   DESIGN TOKENS
+   Brand palette sampled from demo.png. Default Tailwind colors are removed so
+   only this palette can be used — keeps the look consistent.
+   ============================================================================= */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Brand (fixed in both themes) */
+  --color-cyan: #4fd5ee; /* sampled */
+  --color-purple: #6f43d6; /* sampled — primary */
+  --color-indigo: #433a8b; /* sampled */
+  --color-mint: #1be6b7; /* sampled — "AI / active" highlight */
+  --color-navy: #032972; /* sampled */
+  --color-pink: #ff5c8d; /* estimated — shapes, borders, fills only */
+  --color-olive: #c9c86a; /* estimated — squiggles only */
+  --color-paper: #f8f8f6; /* sampled */
+  --color-ink: #111111;
+
+  /* Muted text that passes WCAG AA on coloured blocks */
+  --color-lilac: #e6dcff; /* on purple: 4.65 */
+  --color-lavender: #c9c2f2; /* on indigo: 5.63 */
+
+  /* Layout */
+  --container-site: 75rem; /* 1200px */
+
+  /* Type scale */
+  --text-display: clamp(3rem, 9vw + 1rem, 8.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.01em;
+  --text-title: clamp(2.25rem, 4.5vw + 1rem, 4.5rem);
+  --text-title--line-height: 1;
+  --text-label: 0.75rem;
+  --text-label--line-height: 1rem;
+  --tracking-label: 0.25em;
+
+  /* Motion */
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-float-slow: float 14s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translate3d(0, -12px, 0) rotate(calc(var(--r, 0deg) + 8deg));
+    }
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+/* Theme-dependent (semantic) tokens → utilities like bg-bg, text-fg, text-muted */
+@theme inline {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-tile: var(--tile);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-text: var(--accent-text);
+  --color-pink-text: var(--pink-text);
+  --color-mint-text: var(--mint-text);
+}
+
+/* Every text/background pair below is checked for WCAG AA (4.5:1). */
+:root,
+[data-theme="light"] {
+  --bg: #f8f8f6;
+  --surface: #ffffff;
+  --tile: #ececea;
+  --fg: #111111;
+  --muted: #5c5c58; /* 6.32 on bg, 5.68 on tile */
+  --line: #e2e2de;
+  --accent: #6f43d6; /* white text on it: 6.09 */
+  --accent-fg: #ffffff;
+  --accent-text: #6f43d6; /* 5.72 on bg */
+  --pink-text: #c2255c; /* 5.32 on bg */
+  --mint-text: #08785f; /* 5.11 on bg */
+  --focus: #6f43d6;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0d24;
+  --surface: #1a1736;
+  --tile: #221f40;
+  --fg: #f4f3fa; /* 17.26 on bg */
+  --muted: #a9a6c4; /* 8.10 on bg, 6.68 on tile */
+  --line: #2e2a52;
+  --accent: #6f43d6;
+  --accent-fg: #ffffff;
+  --accent-text: #a58bf0; /* 6.84 on bg */
+  --pink-text: #ff7aa2; /* 7.76 on bg */
+  --mint-text: #1be6b7; /* 11.83 on bg */
+  --focus: #a58bf0;
+  color-scheme: dark;
+}
+
+/* Focus ring colour on coloured blocks (purple/indigo/navy vs cyan/mint) */
+.surface-dark {
+  --focus: #ffffff;
+}
+.surface-bright {
+  --focus: #032972;
+}
+
+@layer base {
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    overflow-x: clip; /* decorative shapes must never cause horizontal scroll */
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-mint);
+    color: var(--color-ink);
+  }
+}
+
+/* =============================================================================
+   SCROLL REVEAL (used by <Reveal>)
+   ============================================================================= */
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal="up"] {
+  transform: translate3d(0, 28px, 0);
+}
+[data-reveal="left"] {
+  transform: translate3d(-28px, 0, 0);
+}
+[data-reveal="right"] {
+  transform: translate3d(28px, 0, 0);
+}
+[data-reveal][data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* =============================================================================
+   REDUCED MOTION — no floating, no reveal movement, no smooth scrolling
+   ============================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
 }
