@@ -18,6 +18,8 @@ const variants = {
   "ghost-white": "min-h-12 border-2 border-white px-7 text-white hover:bg-white hover:text-ink",
   // Small underlined text link ("MY PROFILE")
   link: "min-h-11 px-0 text-fg underline decoration-2 underline-offset-8 hover:text-accent-text",
+  // Same, for coloured blocks (purple / indigo / navy)
+  "link-white": "min-h-11 px-0 text-white underline decoration-2 underline-offset-8 hover:text-mint",
 };
 
 /**

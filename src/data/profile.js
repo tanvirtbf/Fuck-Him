@@ -42,9 +42,10 @@ export const profile = {
       width: 800,
       height: 1000,
     },
-    // About: can be the same photo or a different one
+    // About: shown inside a light-grey card. A cut-out (transparent) photo
+    // looks best, like the demo; it can be the same file as the hero.
     about: {
-      src: "/images/profile-placeholder.svg", // TODO: /images/about.webp
+      src: "/images/hero-placeholder.svg", // TODO: /images/about.webp
       alt: "TODO: describe the photo",
       width: 800,
       height: 1000,

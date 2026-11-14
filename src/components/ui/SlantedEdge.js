@@ -20,7 +20,8 @@ export default function SlantedEdge({ position = "bottom", direction = "up", col
       aria-hidden="true"
       className={cn(
         "pointer-events-none absolute inset-x-0 h-[clamp(2.5rem,7vw,7rem)]",
-        position === "bottom" ? "bottom-0" : "top-0",
+        // 1px overlap hides the sub-pixel seam that fractional heights (vw) can leave
+        position === "bottom" ? "-bottom-px" : "-top-px",
         colorClass,
         className,
       )}

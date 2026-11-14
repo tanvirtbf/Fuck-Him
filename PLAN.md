@@ -12,7 +12,7 @@
 - [x] Phase 1 — Design System (colors, fonts, shapes, UI primitives) — ✅ 2026-11-15
 - [x] Phase 2 — Layout Shell (Navbar, Footer, Theme toggle, scroll-spy) — ✅ 2026-11-15
 - [x] Phase 3 — Home / Hero — ✅ 2026-11-15
-- [ ] Phase 4 — About
+- [x] Phase 4 — About — ✅ 2026-11-15
 - [ ] Phase 5 — Skills
 - [ ] Phase 6 — Projects
 - [ ] Phase 7 — Experience & Journey
