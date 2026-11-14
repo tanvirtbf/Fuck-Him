@@ -9,6 +9,9 @@ const variants = {
   // Pink outlined pill — like the demo navbar button (text uses the AA-safe pink)
   outline:
     "min-h-11 rounded-full border-2 border-pink px-6 text-pink-text hover:bg-pink hover:text-ink",
+  // Navy outlined pill — same shape as `outline`, for bright (cyan / mint) backgrounds
+  "outline-navy":
+    "min-h-11 rounded-full border-2 border-navy px-6 text-navy hover:bg-navy hover:text-white",
   // White button for coloured blocks (purple / indigo / navy)
   inverse: "min-h-12 px-7 bg-white text-ink hover:bg-mint",
   // Small underlined text link ("MY PROFILE")

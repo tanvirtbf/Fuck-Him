@@ -117,6 +117,20 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth; /* turned off by the reduced-motion block below */
+  }
+
+  /* Anchor targets stop below the fixed header (h-16 / lg:h-20) */
+  [id] {
+    scroll-margin-top: 4rem;
+  }
+  @media (min-width: 64rem) {
+    [id] {
+      scroll-margin-top: 5rem;
+    }
+  }
+
   body {
     @apply bg-bg font-sans text-fg antialiased;
     overflow-x: clip; /* decorative shapes must never cause horizontal scroll */
@@ -130,6 +144,18 @@
   ::selection {
     background: var(--color-mint);
     color: var(--color-ink);
+  }
+}
+
+/* Mobile menu overlay entrance */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

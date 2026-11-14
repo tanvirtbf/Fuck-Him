@@ -25,7 +25,16 @@ export default function RootLayout({ children }) {
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
-      <body>{children}</body>
+      <body>
+        {/* First focusable element: lets keyboard users jump past the header */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:bg-ink focus:px-5 focus:py-3 focus:text-label focus:font-semibold focus:tracking-label focus:text-white focus:uppercase"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
