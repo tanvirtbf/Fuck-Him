@@ -16,7 +16,7 @@
 - [x] Phase 5 — Skills — ✅ 2026-11-15
 - [x] Phase 6 — Projects — ✅ 2026-11-15
 - [x] Phase 7 — Experience & Journey — ✅ 2026-11-15
-- [ ] Phase 8 — Vision
+- [x] Phase 8 — Vision — ✅ 2026-11-15
 - [ ] Phase 9 — Contact (Formspree)
 - [ ] Phase 10 — Integration & Polish (dark mode, responsive, animation)
 - [ ] Phase 11 — SEO, Performance, Accessibility, README

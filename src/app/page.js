@@ -5,14 +5,14 @@ import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
+import Vision from "@/components/sections/Vision";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { navLinks } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 
 // TEMPORARY placeholder sections so the navbar, scroll-spy and footer can be
-// tested. Each one is replaced by the real section in Phases 8–9.
+// tested. Each one is replaced by the real section in Phase 9.
 const placeholders = {
-  vision: { bg: "bg-bg", tone: "default", phase: 8 },
   contact: { bg: "bg-surface", tone: "default", phase: 9 },
 };
 
@@ -26,6 +26,7 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
+        <Vision />
         {navLinks
           .filter((link) => placeholders[link.id])
           .map((link) => {
