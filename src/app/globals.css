@@ -3,6 +3,10 @@
 /* `dark:` variant follows the data-theme attribute (set by the inline theme script). */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
+/* `can-hover:` = a real mouse/trackpad. Touch screens never match, so hover-only
+   UI (like the project overlays) is replaced by always-visible content there. */
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
+
 /* =============================================================================
    DESIGN TOKENS
    Brand palette sampled from demo.png. Default Tailwind colors are removed so
@@ -144,6 +148,18 @@
   ::selection {
     background: var(--color-mint);
     color: var(--color-ink);
+  }
+}
+
+/* Project tiles re-entering after a filter change */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 

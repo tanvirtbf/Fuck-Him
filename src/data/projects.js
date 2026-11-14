@@ -12,7 +12,11 @@
 //   liveUrl     live demo link ("" = hide the button)
 //   githubUrl   source code link ("" = hide the button)
 //   featured    true = show on the home page
-//   span        grid size hint: "normal" | "wide" | "tall"
+//   span        grid size hint on desktop: "normal" | "wide" | "tall"
+//
+// Tip: desktop grid has 3 columns. A pattern that fills it without gaps:
+//   tall + wide + normal + normal   (the current order)
+// AI projects get the mint highlight automatically (category: "AI").
 // =============================================================================
 
 export const projectCategories = ["All", "AI", "Full-Stack", "Frontend"];
@@ -50,6 +54,19 @@ export const projects = [
     description: "TODO: add real description (1–2 lines).",
     role: "TODO: your role",
     category: "Frontend",
+    tech: ["TODO"],
+    image: "/projects/placeholder.svg",
+    liveUrl: "",
+    githubUrl: "",
+    featured: true,
+    span: "normal",
+  },
+  {
+    id: "todo-full-stack-project-2",
+    title: "TODO: Another Project",
+    description: "TODO: add real description (1–2 lines).",
+    role: "TODO: your role",
+    category: "Full-Stack",
     tech: ["TODO"],
     image: "/projects/placeholder.svg",
     liveUrl: "",

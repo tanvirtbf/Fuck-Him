@@ -20,6 +20,8 @@ const variants = {
   link: "min-h-11 px-0 text-fg underline decoration-2 underline-offset-8 hover:text-accent-text",
   // Same, for coloured blocks (purple / indigo / navy)
   "link-white": "min-h-11 px-0 text-white underline decoration-2 underline-offset-8 hover:text-mint",
+  // Inherits the surrounding text colour — works on any background (tiles, mint, overlays)
+  "link-current": "min-h-10 px-0 text-current underline decoration-2 underline-offset-6 hover:decoration-4",
 };
 
 /**

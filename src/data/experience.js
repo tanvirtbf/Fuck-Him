@@ -17,6 +17,17 @@ export const jobs = [
       "TODO: achievement 2",
     ],
   },
+  {
+    id: "todo-job-2",
+    role: "TODO: Previous role",
+    company: "TODO: Company",
+    start: "TODO: Mon YYYY",
+    end: "TODO: Mon YYYY",
+    achievements: [
+      "TODO: achievement 1",
+      "TODO: achievement 2",
+    ],
+  },
 ];
 
 export const education = [
@@ -29,8 +40,15 @@ export const education = [
   },
 ];
 
+// url: link to the credential ("" = no link)
 export const certifications = [
-  // { id: "cert-1", name: "Certificate name", issuer: "Issuer", year: "YYYY", url: "" },
+  {
+    id: "todo-cert-1",
+    name: "TODO: Certificate name (delete this entry if you have none)",
+    issuer: "TODO: Issuer",
+    year: "TODO: YYYY",
+    url: "",
+  },
 ];
 
 // Optional — the block is hidden while this list is empty

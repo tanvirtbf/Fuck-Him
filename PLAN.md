@@ -14,8 +14,8 @@
 - [x] Phase 3 — Home / Hero — ✅ 2026-11-15
 - [x] Phase 4 — About — ✅ 2026-11-15
 - [x] Phase 5 — Skills — ✅ 2026-11-15
-- [ ] Phase 6 — Projects
-- [ ] Phase 7 — Experience & Journey
+- [x] Phase 6 — Projects — ✅ 2026-11-15
+- [x] Phase 7 — Experience & Journey — ✅ 2026-11-15
 - [ ] Phase 8 — Vision
 - [ ] Phase 9 — Contact (Formspree)
 - [ ] Phase 10 — Integration & Polish (dark mode, responsive, animation)
