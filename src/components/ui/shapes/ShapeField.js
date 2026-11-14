@@ -21,10 +21,16 @@ const REGISTRY = {
  *
  * Position: x/right + y/bottom (any CSS length). rotate in degrees.
  * float: false = static. slow: true = slower float. delay in seconds.
+ * Visibility: hideOnMobile: true (= from md up), or display: "hidden xl:block"
+ * (any literal display classes) for finer control.
+ * clip={false} lets shapes sit outside the parent box (e.g. beside a photo).
  */
-export default function ShapeField({ shapes, className }) {
+export default function ShapeField({ shapes, className, clip = true }) {
   return (
-    <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
+    <div
+      aria-hidden="true"
+      className={cn("pointer-events-none absolute inset-0", clip && "overflow-hidden", className)}
+    >
       {shapes.map((s, i) => {
         const Shape = REGISTRY[s.type];
         if (!Shape) return null;
@@ -36,7 +42,7 @@ export default function ShapeField({ shapes, className }) {
             key={i}
             className={cn(
               "absolute",
-              s.hideOnMobile ? "hidden md:block" : "block",
+              s.display ?? (s.hideOnMobile ? "hidden md:block" : "block"),
               floats && (s.slow ? "animate-float-slow" : "animate-float"),
               s.color,
             )}

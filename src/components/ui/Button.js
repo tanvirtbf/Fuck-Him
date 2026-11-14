@@ -14,6 +14,8 @@ const variants = {
     "min-h-11 rounded-full border-2 border-navy px-6 text-navy hover:bg-navy hover:text-white",
   // White button for coloured blocks (purple / indigo / navy)
   inverse: "min-h-12 px-7 bg-white text-ink hover:bg-mint",
+  // White outline for coloured blocks — secondary action next to `inverse`
+  "ghost-white": "min-h-12 border-2 border-white px-7 text-white hover:bg-white hover:text-ink",
   // Small underlined text link ("MY PROFILE")
   link: "min-h-11 px-0 text-fg underline decoration-2 underline-offset-8 hover:text-accent-text",
 };

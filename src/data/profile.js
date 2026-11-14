@@ -34,9 +34,10 @@ export const profile = {
 
   // Photos live in /public/images. Use WebP for real photos.
   photos: {
-    // Hero: waist-up portrait with a TRANSPARENT background (cut-out)
+    // Hero: waist-up portrait with a TRANSPARENT background (cut-out),
+    // about 4:5 (e.g. 800x1000). It sits across the cyan/purple split.
     hero: {
-      src: "/images/profile-placeholder.svg", // TODO: /images/hero.webp
+      src: "/images/hero-placeholder.svg", // TODO: /images/hero.webp
       alt: "TODO: describe the photo, e.g. Portrait of <your name>",
       width: 800,
       height: 1000,

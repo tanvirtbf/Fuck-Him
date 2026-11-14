@@ -1,13 +1,13 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Hero from "@/components/sections/Hero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { navLinks } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 
 // TEMPORARY placeholder sections so the navbar, scroll-spy and footer can be
-// tested. Each one is replaced by the real section in Phases 3–9.
+// tested. Each one is replaced by the real section in Phases 4–9.
 const placeholders = {
-  home: { bg: "surface-bright bg-cyan", tone: "cyan", phase: 3 },
   about: { bg: "surface-dark bg-purple", tone: "purple", phase: 4 },
   skills: { bg: "bg-bg", tone: "default", phase: 5 },
   projects: { bg: "bg-surface", tone: "default", phase: 6 },
@@ -21,23 +21,20 @@ export default function Home() {
     <>
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
-        {navLinks.map((link) => {
+        <Hero />
+        {navLinks
+          .filter((link) => placeholders[link.id])
+          .map((link) => {
           const p = placeholders[link.id];
-          const isHome = link.id === "home";
           return (
             <section
               key={link.id}
               id={link.id}
               aria-labelledby={`${link.id}-title`}
-              className={cn(
-                "flex items-center justify-center px-4",
-                isHome ? "min-h-svh" : "min-h-[80vh]",
-                p.bg,
-              )}
+              className={cn("flex min-h-[80vh] items-center justify-center px-4", p.bg)}
             >
               <SectionHeading
                 id={`${link.id}-title`}
-                as={isHome ? "h1" : "h2"}
                 kicker={`(placeholder · Phase ${p.phase})`}
                 title={link.label}
                 tone={p.tone}
