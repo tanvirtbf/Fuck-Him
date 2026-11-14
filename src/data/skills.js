@@ -1,7 +1,8 @@
 // =============================================================================
 // SKILLS — grouped by category. No percentages or ratings, just names.
-// `icon` is a key from the icon map (built in Phase 5). If an icon key is
-// unknown, the chip simply shows the name without an icon.
+// `icon` is a key from src/lib/skillIcons.js (e.g. "react", "docker").
+// Unknown or empty keys simply show the name without an icon.
+// The "ai" group is highlighted in mint (same colour as AI projects).
 // =============================================================================
 
 export const skillGroups = [

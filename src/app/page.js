@@ -2,14 +2,14 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { navLinks } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 
 // TEMPORARY placeholder sections so the navbar, scroll-spy and footer can be
-// tested. Each one is replaced by the real section in Phases 5–9.
+// tested. Each one is replaced by the real section in Phases 6–9.
 const placeholders = {
-  skills: { bg: "bg-bg", tone: "default", phase: 5 },
   projects: { bg: "bg-surface", tone: "default", phase: 6 },
   experience: { bg: "surface-dark bg-indigo", tone: "indigo", phase: 7 },
   vision: { bg: "bg-bg", tone: "default", phase: 8 },
@@ -23,6 +23,7 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Hero />
         <About />
+        <Skills />
         {navLinks
           .filter((link) => placeholders[link.id])
           .map((link) => {
