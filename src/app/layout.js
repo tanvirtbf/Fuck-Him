@@ -1,11 +1,43 @@
 import "./globals.css";
 import { montserrat, playfair } from "./fonts";
 import { themeInitScript } from "@/lib/theme";
+import { profile } from "@/data/profile";
+import { siteUrl, siteTitle, fullName } from "@/lib/site";
 
-// Full metadata / Open Graph tags are added in Phase 11.
+// SEO + link previews. public/og-image.png is regenerated from profile.js on
+// every build (scripts/generate-og-image.mjs); favicons are app/icon.svg and
+// app/apple-icon.png.
+const ogImage = { url: "/og-image.png", width: 1200, height: 630, alt: `${fullName} — portfolio` };
+
 export const metadata = {
-  title: "Portfolio",
-  description: "TODO: site description (set in Phase 11).",
+  metadataBase: new URL(siteUrl),
+  title: { default: siteTitle, template: `%s | ${fullName}` },
+  description: profile.seoDescription,
+  applicationName: fullName,
+  authors: [{ name: fullName }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: fullName,
+    title: siteTitle,
+    description: profile.seoDescription,
+    locale: "en_US",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: profile.seoDescription,
+    images: [ogImage],
+  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f8f8f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0d24" },
+  ],
 };
 
 export default function RootLayout({ children }) {

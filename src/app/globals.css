@@ -121,17 +121,15 @@
 }
 
 @layer base {
+  /* scroll-padding keeps anchor jumps AND keyboard focus clear of the fixed
+     header (h-16 / lg:h-20), so a focused link is never hidden under it. */
   html {
     scroll-behavior: smooth; /* turned off by the reduced-motion block below */
-  }
-
-  /* Anchor targets stop below the fixed header (h-16 / lg:h-20) */
-  [id] {
-    scroll-margin-top: 4rem;
+    scroll-padding-top: 4rem;
   }
   @media (min-width: 64rem) {
-    [id] {
-      scroll-margin-top: 5rem;
+    html {
+      scroll-padding-top: 5rem;
     }
   }
 

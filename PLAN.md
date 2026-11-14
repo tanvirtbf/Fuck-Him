@@ -18,9 +18,9 @@
 - [x] Phase 7 — Experience & Journey — ✅ 2026-11-15
 - [x] Phase 8 — Vision — ✅ 2026-11-15
 - [x] Phase 9 — Contact (Formspree) — ✅ 2026-11-15
-- [ ] Phase 10 — Integration & Polish (dark mode, responsive, animation)
-- [ ] Phase 11 — SEO, Performance, Accessibility, README
-- [ ] Phase 12 — Deploy (Vercel) & Final Acceptance
+- [x] Phase 10 — Integration & Polish (dark mode, responsive, animation) — ✅ 2026-11-15
+- [x] Phase 11 — SEO, Performance, Accessibility, README — ✅ 2026-11-15
+- [x] Phase 12 — Deploy (Vercel) & Final Acceptance — ✅ 2026-11-15 (pushed to GitHub → Vercel; real content still TODO)
 
 Optional (পরে, Phase 12 এর পর): Testimonials · Case study pages · Blog · Featured In
 

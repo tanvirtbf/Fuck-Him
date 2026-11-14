@@ -10,10 +10,11 @@ const tones = {
 export default function Logo({ tone = "mint", className, onClick }) {
   const name = `${profile.name.first} ${profile.name.last}`;
   return (
+    // Accessible name starts with the visible initials (WCAG 2.5.3 "label in
+    // name"), so voice-control users can say "click TD".
     <a
       href="#home"
       onClick={onClick}
-      aria-label={`${name}, back to top`}
       className={cn(
         "inline-flex size-11 shrink-0 items-center justify-center rounded-full text-xs font-extrabold tracking-wider transition-colors duration-300",
         tones[tone],
@@ -21,6 +22,7 @@ export default function Logo({ tone = "mint", className, onClick }) {
       )}
     >
       {profile.initials}
+      <span className="sr-only"> — {name}, back to top</span>
     </a>
   );
 }

@@ -15,6 +15,10 @@ export const profile = {
   // One-line headline under the name in the Hero
   headline: "Full-Stack Developer · Building AI-powered apps with JavaScript",
 
+  // Google / link-preview description (about 150 characters)
+  seoDescription:
+    "Portfolio of a full-stack developer with 3+ years of experience building web apps and AI-powered products with Node.js, React, Next.js and MySQL.",
+
   // 1–2 sentence intro in the Hero
   intro:
     "TODO: add a short 1–2 sentence intro about what you build and for whom.",

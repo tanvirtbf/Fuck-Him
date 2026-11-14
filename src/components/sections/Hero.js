@@ -8,18 +8,19 @@ import { cn } from "@/lib/cn";
 
 // Floating Memphis shapes (demo panel 1). The name can be long, so section
 // shapes stay on the outer edges; every position was checked against text
-// and buttons at 320 / 360 / 390 / 768 / 1024 / 1440 px.
+// and buttons from 320 to 1920 px (incl. 1280x720 / 1366x768 laptops).
 const sectionShapes = [
   // tablet and up: edges of the cyan band
   { type: "dash", x: "3%", y: "20%", size: 28, rotate: 8, color: "text-purple", hideOnMobile: true },
   { type: "squiggle", right: "2.5%", y: "15%", size: 46, rotate: 18, color: "text-mint", delay: 1, hideOnMobile: true },
   { type: "dash", right: "4%", y: "40%", size: 26, rotate: 58, color: "text-olive", delay: 2, hideOnMobile: true },
   { type: "dot", x: "5%", y: "46%", size: 12, color: "text-pink", delay: 1.5, hideOnMobile: true },
-  // wide screens: edges of the purple band (clear of the intro / buttons)
-  { type: "triangle", x: "0.5%", y: "68%", size: 90, rotate: -12, color: "text-olive", slow: true, display: "hidden xl:block" },
-  { type: "ring", x: "2.5%", y: "78%", size: 46, color: "text-cyan", delay: 0.5, display: "hidden xl:block" },
-  { type: "ring", right: "2.5%", y: "80%", size: 30, color: "text-cyan", delay: 1.5, display: "hidden xl:block" },
-  { type: "dash", right: "4%", y: "88%", size: 28, rotate: 30, color: "text-mint", delay: 2.5, display: "hidden xl:block" },
+  // ≥1400px only: edges of the purple band. Below that the intro text reaches
+  // almost to the screen edge (at 1280px it starts 64px in), so these would cover it.
+  { type: "triangle", x: "0.5%", y: "68%", size: 90, rotate: -12, color: "text-olive", slow: true, display: "hidden min-[1400px]:block" },
+  { type: "ring", x: "2.5%", y: "78%", size: 46, color: "text-cyan", delay: 0.5, display: "hidden min-[1400px]:block" },
+  { type: "ring", right: "2.5%", y: "80%", size: 30, color: "text-cyan", delay: 1.5, display: "hidden min-[1400px]:block" },
+  { type: "dash", right: "4%", y: "88%", size: 28, rotate: 30, color: "text-mint", delay: 2.5, display: "hidden min-[1400px]:block" },
 ];
 
 // Phones / tablets: shapes placed relative to the portrait, in the free
@@ -64,7 +65,8 @@ export default function Hero() {
 
       {/* ---------------- cyan band: name + portrait ---------------- */}
       <div className="surface-bright flex flex-1 flex-col items-center bg-cyan px-4 pt-24 text-center text-navy lg:pt-28">
-        <div className="relative z-10 flex flex-1 flex-col items-center justify-center pb-8">
+        {/* bottom padding ≥ how far the framed photo's polyhedron rises above it */}
+        <div className="relative z-10 flex flex-1 flex-col items-center justify-center pb-[calc(var(--photo-w)*0.14+1rem)]">
           <h1 id="hero-title" className="flex flex-col items-center">
             <span className="pl-[0.4em] text-[clamp(1.125rem,2.6vw,2rem)] font-light tracking-[0.4em] uppercase">
               {name.first}
@@ -113,7 +115,7 @@ export default function Hero() {
 
       {/* ---------------- purple band: intro + actions ---------------- */}
       <div className="surface-dark bg-purple px-4 pt-[calc(var(--photo-w)*0.5+3rem)] pb-16 text-white sm:px-6 lg:min-h-[calc(var(--photo-w)*0.5+4rem)] lg:pt-12 lg:pb-12">
-        <div className="relative z-10 mx-auto grid max-w-site items-start gap-8 lg:grid-cols-[1fr_var(--photo-w)_1fr] lg:gap-12 lg:px-2">
+        <div className="relative z-10 mx-auto grid max-w-site items-start gap-8 lg:grid-cols-[1fr_var(--photo-w)_1fr] lg:gap-16 lg:px-2">
           <p className="mx-auto max-w-md text-center text-base leading-relaxed lg:col-start-1 lg:mr-0 lg:text-right">
             {intro}
           </p>
