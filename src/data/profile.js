@@ -65,4 +65,7 @@ export const profile = {
 
   // Résumé PDF in /public
   resume: "/resume.pdf",
+
+  // Contact section invitation line
+  contactIntro: "Have a project or opportunity? Let's talk.",
 };

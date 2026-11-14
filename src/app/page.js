@@ -6,16 +6,9 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Experience from "@/components/sections/Experience";
 import Vision from "@/components/sections/Vision";
-import SectionHeading from "@/components/ui/SectionHeading";
-import { navLinks } from "@/data/navigation";
-import { cn } from "@/lib/cn";
+import Contact from "@/components/sections/Contact";
 
-// TEMPORARY placeholder sections so the navbar, scroll-spy and footer can be
-// tested. Each one is replaced by the real section in Phase 9.
-const placeholders = {
-  contact: { bg: "bg-surface", tone: "default", phase: 9 },
-};
-
+// Single-page portfolio. Section order matches src/data/navigation.js.
 export default function Home() {
   return (
     <>
@@ -27,26 +20,7 @@ export default function Home() {
         <Projects />
         <Experience />
         <Vision />
-        {navLinks
-          .filter((link) => placeholders[link.id])
-          .map((link) => {
-          const p = placeholders[link.id];
-          return (
-            <section
-              key={link.id}
-              id={link.id}
-              aria-labelledby={`${link.id}-title`}
-              className={cn("flex min-h-[80vh] items-center justify-center px-4", p.bg)}
-            >
-              <SectionHeading
-                id={`${link.id}-title`}
-                kicker={`(placeholder · Phase ${p.phase})`}
-                title={link.label}
-                tone={p.tone}
-              />
-            </section>
-          );
-        })}
+        <Contact />
       </main>
       <Footer />
     </>

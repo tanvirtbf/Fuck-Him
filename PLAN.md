@@ -17,7 +17,7 @@
 - [x] Phase 6 — Projects — ✅ 2026-11-15
 - [x] Phase 7 — Experience & Journey — ✅ 2026-11-15
 - [x] Phase 8 — Vision — ✅ 2026-11-15
-- [ ] Phase 9 — Contact (Formspree)
+- [x] Phase 9 — Contact (Formspree) — ✅ 2026-11-15
 - [ ] Phase 10 — Integration & Polish (dark mode, responsive, animation)
 - [ ] Phase 11 — SEO, Performance, Accessibility, README
 - [ ] Phase 12 — Deploy (Vercel) & Final Acceptance
