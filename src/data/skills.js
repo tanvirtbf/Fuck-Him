@@ -1,0 +1,52 @@
+// =============================================================================
+// SKILLS — grouped by category. No percentages or ratings, just names.
+// `icon` is a key from the icon map (built in Phase 5). If an icon key is
+// unknown, the chip simply shows the name without an icon.
+// =============================================================================
+
+export const skillGroups = [
+  {
+    id: "frontend",
+    title: "Frontend",
+    skills: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "JavaScript", icon: "javascript" },
+      // TODO: add more (e.g. HTML, CSS, Tailwind CSS, ...)
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend",
+    skills: [
+      { name: "Node.js", icon: "nodejs" },
+      // TODO: add more (e.g. Express, REST, ...)
+    ],
+  },
+  {
+    id: "database",
+    title: "Database",
+    skills: [
+      { name: "MySQL", icon: "mysql" },
+      // TODO: add more
+    ],
+  },
+  {
+    id: "ai",
+    title: "AI / LLM",
+    skills: [
+      // TODO: confirm — taken from the "Current Focus" example in requirements
+      { name: "LangChain", icon: "langchain" },
+      { name: "LangGraph", icon: "langgraph" },
+      { name: "LangSmith", icon: "langsmith" },
+    ],
+  },
+  {
+    id: "tools",
+    title: "Tools & DevOps",
+    skills: [
+      // TODO: add tools (e.g. Git, GitHub, Docker, Vercel, ...)
+      { name: "TODO: tool", icon: "" },
+    ],
+  },
+];

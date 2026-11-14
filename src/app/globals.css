@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/*
+ * Phase 0: minimal base only.
+ * Design tokens (colors, fonts, light/dark theme) are added in Phase 1.
+ */
+
+:root {
+  --background: #f8f8f6;
+  --foreground: #111111;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}

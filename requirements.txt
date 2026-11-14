@@ -1,0 +1,229 @@
+# Personal Portfolio Website — Requirements
+
+## 1. Project Overview
+
+Build a personal professional portfolio website for a **full-stack developer (3+ years of experience)** who works with **Node.js, React, Next.js, MySQL** and builds **AI projects in JavaScript**.
+
+The site should let visitors quickly understand:
+- **What I do** (skills, current work)
+- **What I have done** (projects, experience, journey)
+- **Where I am heading** (vision, goals, current focus)
+- **How to contact me**
+
+## 2. Hard Constraints
+
+- **Frontend only.** No backend, no API routes, no server actions, no database, no authentication.
+- **Fully static.** Every page must be pre-rendered at build time.
+- **Hosting:** Vercel free (Hobby) plan, deployed from a GitHub repository.
+- **No paid services.** Only free tiers of third-party tools are allowed.
+- **All content lives in local data files** so it can be edited without touching component code.
+
+## 3. Tech Stack
+
+| Area | Choice |
+|---|---|
+| Framework | Next.js (latest stable, App Router) with static export (`output: 'export'` in `next.config.js`) |
+| Language | JavaScript (JSX) |
+| Styling | Tailwind CSS |
+| Icons | `lucide-react` (and `react-icons` only for brand logos if needed) |
+| Animations | CSS transitions or `framer-motion` (keep them subtle) |
+| Contact form | Formspree (free plan), submitted directly from the browser |
+| Fonts | `next/font` (Google Fonts, self-hosted at build time) |
+| Images | Local images in `/public`, WebP format, `next/image` with `unoptimized: true` (required for static export) |
+| Package manager | npm |
+
+Do not add any library that requires a server or a database.
+
+## 4. Site Structure
+
+Single-page layout with smooth scrolling between sections. Optional separate pages are listed in section 7.
+
+### Navigation (sticky header)
+Home → About → Projects → Experience → Vision → Contact
+
+- Highlights the active section while scrolling
+- Collapses into a hamburger menu on mobile
+- Includes the light/dark mode toggle and a "Download Resume" button
+
+## 5. Sections (Required)
+
+### 5.1 Home / Hero
+- Name, profile photo, and a one-line headline (e.g. "Full-Stack Developer · Building AI-powered apps with JavaScript")
+- A short 1–2 sentence intro
+- Two call-to-action buttons: **View My Work** (scrolls to Projects) and **Contact Me** (scrolls to Contact)
+- Social icon links: GitHub, LinkedIn, Email
+
+### 5.2 About Me
+- 2–4 short paragraphs telling my story in a human tone (not a résumé)
+- Quick facts: years of experience, location, current role, open to work (yes/no)
+- Photo (can reuse the hero photo or use a different one)
+
+### 5.3 Skills
+- Grouped into categories: **Frontend**, **Backend**, **Database**, **AI / LLM**, **Tools & DevOps**
+- Each skill shown as a badge/chip with an icon where available
+- No percentage bars or star ratings
+
+### 5.4 Projects
+- 3–6 featured projects shown as cards, strongest work first
+- Each card: thumbnail image, title, short description, my role, tech stack tags, **Live Demo** link, **GitHub** link
+- Filter buttons by category (e.g. All / AI / Full-Stack / Frontend)
+- AI projects should be visually easy to find
+
+### 5.5 Experience & Journey
+- Vertical timeline, newest first
+- Each entry: role, company, date range, 2–4 bullet points of achievements
+- Separate sub-block for **Education & Certifications**
+- Optional sub-block for **Achievements / Awards**
+
+### 5.6 Vision
+- **My Vision / Mission:** 2–3 sentences on where I am heading and what problems I want to solve
+- **Goals:** short-term and long-term goals as a short list
+- **Current Focus:** what I am learning or building right now (e.g. LangChain, LangGraph, LangSmith in JavaScript)
+
+### 5.7 Contact
+- Short invitation line ("Have a project or opportunity? Let's talk.")
+- Contact form via Formspree with fields: Name, Email, Message
+  - Client-side validation (required fields, valid email format)
+  - Loading, success, and error states
+  - Formspree form ID read from an environment variable: `NEXT_PUBLIC_FORMSPREE_ID`
+- Direct links: Email (mailto), LinkedIn, GitHub
+- **Download Resume** button (PDF from `/public/resume.pdf`)
+
+### 5.8 Footer
+- Copyright line with the current year
+- Social links
+- "Back to top" button
+
+## 6. Content Management
+
+All editable content must live in `/src/data/` as plain JavaScript objects or arrays:
+
+```
+src/data/
+  profile.js      // name, headline, bio, photo path, location, social links, resume path
+  skills.js       // grouped skills with icon names
+  projects.js     // project cards
+  experience.js   // jobs, education, certifications, achievements
+  vision.js       // vision, goals, current focus
+```
+
+Example shape for `projects.js`:
+
+```js
+export const projects = [
+  {
+    id: "ai-chat-assistant",
+    title: "AI Chat Assistant",
+    description: "Short one or two line description.",
+    role: "Solo developer",
+    category: "AI",
+    tech: ["Next.js", "LangChain", "Tailwind"],
+    image: "/projects/ai-chat-assistant.webp",
+    liveUrl: "https://...",
+    githubUrl: "https://github.com/...",
+    featured: true,
+  },
+];
+```
+
+Use clearly marked **placeholder content** (e.g. `"TODO: add real description"`) wherever real content is not provided. Do not invent real-looking personal details, company names, or links.
+
+## 7. Optional Features (build later, keep the structure ready)
+
+- Testimonials section (data file + section component, hidden when the array is empty)
+- Case study pages for 1–2 projects at `/projects/[slug]` (statically generated)
+- Blog using local Markdown/MDX files (statically generated, no CMS)
+- "Featured In / Publications" section
+
+## 8. Design Requirements
+
+- Clean, modern, professional look with a single accent color
+- **Light and dark mode**, respecting the system preference by default and saving the user's choice in `localStorage`
+- **Mobile-first and fully responsive**: phone, tablet, desktop
+- Consistent spacing, max content width around 1100–1200px
+- Subtle animations only (fade/slide on scroll); respect `prefers-reduced-motion`
+- No horizontal scrolling on any screen size
+
+## 9. SEO & Sharing
+
+- Page title and meta description set through Next.js `metadata`
+- Open Graph and Twitter card tags with an OG image (`/public/og-image.png`, 1200×630)
+- Favicon and Apple touch icon
+- `sitemap.xml` and `robots.txt` generated at build time
+- Semantic HTML (`header`, `nav`, `main`, `section`, `footer`) with one `h1` per page
+
+## 10. Performance & Accessibility
+
+- Lighthouse score target: **90+** for Performance, Accessibility, Best Practices, and SEO
+- All images compressed (WebP) with explicit width/height and descriptive `alt` text
+- Keyboard navigable: visible focus states, skip-to-content link, accessible mobile menu
+- Color contrast meets WCAG AA in both light and dark modes
+- External links open in a new tab with `rel="noopener noreferrer"`
+
+## 11. Folder Structure
+
+```
+/
+├─ public/
+│  ├─ images/          // profile photo, misc images
+│  ├─ projects/        // project thumbnails
+│  ├─ resume.pdf
+│  ├─ og-image.png
+│  └─ favicon.ico
+├─ src/
+│  ├─ app/
+│  │  ├─ layout.js
+│  │  ├─ page.js
+│  │  ├─ globals.css
+│  │  ├─ sitemap.js
+│  │  └─ robots.js
+│  ├─ components/
+│  │  ├─ layout/       // Navbar, Footer, ThemeToggle
+│  │  ├─ sections/     // Hero, About, Skills, Projects, Experience, Vision, Contact
+│  │  └─ ui/           // Button, Card, Badge, SectionHeading
+│  └─ data/            // content files (see section 6)
+├─ .env.example        // NEXT_PUBLIC_FORMSPREE_ID=
+├─ next.config.js
+├─ tailwind.config.js
+├─ package.json
+└─ README.md
+```
+
+## 12. Deployment (Vercel Free Plan)
+
+1. Push the project to a GitHub repository.
+2. In Vercel, choose **Add New Project** and import the repository.
+3. Add the environment variable `NEXT_PUBLIC_FORMSPREE_ID`.
+4. Deploy. The site will be live at `yourname.vercel.app`.
+5. A custom domain can be connected later from Vercel project settings.
+
+Every push to the `main` branch should redeploy automatically.
+
+## 13. README Requirements
+
+The generated `README.md` must explain:
+- How to install and run locally (`npm install`, `npm run dev`)
+- How to build (`npm run build`) and confirm the static output works
+- Where to edit content (`src/data/`)
+- How to set up Formspree and the environment variable
+- How to deploy to Vercel
+
+## 14. Acceptance Checklist
+
+- [ ] `npm run build` succeeds with static export and no server features
+- [ ] No backend code, API routes, or database anywhere in the project
+- [ ] All sections from section 5 are present and editable through `src/data/`
+- [ ] Navigation scrolls to each section and highlights the active one
+- [ ] Contact form sends through Formspree and shows success/error states
+- [ ] Resume downloads correctly
+- [ ] Light/dark mode works and remembers the choice
+- [ ] Looks correct at 360px, 768px, and 1440px widths
+- [ ] Lighthouse scores of 90+ in all four categories
+- [ ] Deploys successfully on the Vercel free plan
+
+## 15. Notes for the AI Assistant Building This
+
+- Ask me for real content (bio, projects, experience, links) before replacing placeholders.
+- Keep components small and reusable; avoid unnecessary dependencies.
+- Build section by section and confirm each works before moving to the next.
+- If any requirement conflicts with static export, flag it and suggest a static alternative instead of adding a backend.

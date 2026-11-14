@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000" role="img" aria-label="Placeholder portrait">
+  <!-- PLACEHOLDER: replace with your real photo (WebP) and update src/data/profile.js -->
+  <rect width="800" height="1000" fill="#ECECEA"/>
+  <circle cx="400" cy="360" r="150" fill="#C9C9C6"/>
+  <path d="M130 1000c0-190 120-330 270-330s270 140 270 330z" fill="#C9C9C6"/>
+  <text x="400" y="80" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="700" letter-spacing="6" fill="#9A9A96">PLACEHOLDER</text>
+</svg>
