@@ -5,7 +5,11 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import SlantedEdge from "@/components/ui/SlantedEdge";
+import ReadMore from "@/components/ui/ReadMore";
 import { ShapeField, DashedCircle } from "@/components/ui/shapes";
+
+// Paragraphs shown after the lead before "See more" (keeps the text beside the photo)
+const VISIBLE_PARAGRAPHS = 1;
 
 // Positions checked against text at 320–1440 px (see Phase 4 tests).
 const shapes = [
@@ -24,6 +28,8 @@ const shapes = [
 export default function About() {
   const { bio, photos, yearsOfExperience, location, currentRole, openToWork, socials, resume } = profile;
   const [lead, ...rest] = bio;
+  const shown = rest.slice(0, VISIBLE_PARAGRAPHS);
+  const more = rest.slice(VISIBLE_PARAGRAPHS);
   const photo = photos.about;
 
   // "My profile" → LinkedIn when set, otherwise the résumé PDF
@@ -48,10 +54,10 @@ export default function About() {
           <SectionHeading id="about-title" kicker="(who am I)" title="Hello" tone="purple" />
 
           <div className="mt-12 grid items-start gap-12 lg:mt-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
-            {/* Photo card — hangs 6rem below the purple block on large screens */}
+            {/* Photo card — top-aligned with the text so a long bio never leaves an empty gap above it */}
             <Reveal
               direction="left"
-              className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-none lg:self-end lg:-mb-64"
+              className="relative mx-auto w-full max-w-xs sm:max-w-sm lg:mx-0 lg:max-w-none lg:self-start lg:pt-4"
             >
               <DashedCircle
                 size={420}
@@ -76,11 +82,20 @@ export default function About() {
             {/* Story + quick facts */}
             <Reveal direction="up" delay={120} className="flex flex-col gap-6 lg:pt-4">
               {lead && <p className="text-lg leading-snug font-semibold sm:text-xl">{lead}</p>}
-              {rest.map((paragraph, i) => (
+              {shown.map((paragraph, i) => (
                 <p key={i} className="max-w-prose leading-relaxed text-lilac">
                   {paragraph}
                 </p>
               ))}
+              {more.length > 0 && (
+                <ReadMore className="flex flex-col gap-6">
+                  {more.map((paragraph, i) => (
+                    <p key={i} className="max-w-prose leading-relaxed text-lilac">
+                      {paragraph}
+                    </p>
+                  ))}
+                </ReadMore>
+              )}
 
               <dl className="mt-2 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/25 pt-6 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
                 {facts.map((fact) => (
