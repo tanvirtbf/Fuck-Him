@@ -41,7 +41,7 @@ export default function Contact() {
 
               {links.length > 0 && (
                 <ul className="flex flex-col border-t border-line">
-                  {links.map(({ id, label, href, external, Icon }) => (
+                  {links.map(({ id, label, href, display, external, Icon }) => (
                     <li key={id} className="border-b border-line">
                       <a
                         href={href}
@@ -55,7 +55,7 @@ export default function Contact() {
                         <span className="flex min-w-0 flex-col">
                           <span className="text-label font-semibold tracking-label text-muted uppercase">{label}</span>
                           <span className="truncate font-semibold">
-                            {id === "email" ? profile.email : href.replace(/^https?:\/\/(www\.)?/, "")}
+                            {id === "email" ? profile.email : display || href.replace(/^https?:\/\/(www\.)?/, "")}
                           </span>
                         </span>
                         <ArrowUpRight

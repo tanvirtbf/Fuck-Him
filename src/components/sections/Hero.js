@@ -122,8 +122,8 @@ export default function Hero() {
 
           <div className="flex flex-col items-center gap-5 lg:col-start-3 lg:items-start">
             <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
-              <Button variant="inverse" href="#projects">
-                View my work <ArrowRight size={16} aria-hidden="true" />
+              <Button variant="inverse" href="#experience">
+                View my experience <ArrowRight size={16} aria-hidden="true" />
               </Button>
               <Button variant="ghost-white" href="#contact">
                 Contact me

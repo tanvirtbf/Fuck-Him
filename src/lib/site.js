@@ -12,4 +12,4 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const fullName = `${profile.name.first} ${profile.name.last}`;
-export const siteTitle = `${fullName} — Full-Stack Developer`;
+export const siteTitle = `${fullName} — ${profile.jobTitle}`;

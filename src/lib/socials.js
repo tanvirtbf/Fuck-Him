@@ -1,9 +1,10 @@
-import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { Mail } from "lucide-react";
 
 const ICONS = {
   github: FaGithub,
   linkedin: FaLinkedinIn,
+  whatsapp: FaWhatsapp,
 };
 
 // Turns profile.socials + profile.email into renderable links.
@@ -11,7 +12,7 @@ const ICONS = {
 export function getSocialLinks(profile) {
   const links = profile.socials
     .filter((s) => s.url)
-    .map((s) => ({ id: s.id, label: s.label, href: s.url, external: true, Icon: ICONS[s.id] }));
+    .map((s) => ({ id: s.id, label: s.label, href: s.url, display: s.display, external: true, Icon: ICONS[s.id] }));
 
   if (profile.email) {
     links.push({

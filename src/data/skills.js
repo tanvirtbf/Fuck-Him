@@ -1,55 +1,77 @@
 // =============================================================================
 // SKILLS — grouped by category. No percentages or ratings, just names.
-// `icon` is a key from src/lib/skillIcons.js (e.g. "react", "docker").
-// Unknown or empty keys simply show the name without an icon.
+// `icon` is a key from src/lib/skillIcons.js ("" = no icon).
 //
-// Order = order on the page. The "ai" group comes first: it is the tall,
-// mint-highlighted tile (same colour as AI projects).
+// Order = order on the page. The layout is chosen by group id
+// (see LAYOUT in src/components/sections/Skills.js):
+//   ai        → tall mint tile (first)
+//   frontend  → wide tile
+//   backend, database → normal tiles
+//   tools     → full-width tile (last)
+// The ids are only layout slots; the titles below are what visitors see.
+// Source: Fahim Mostakin's LinkedIn profile and CV (Nov 2026).
 // =============================================================================
 
 export const skillGroups = [
   {
     id: "ai",
-    title: "AI / LLM",
+    title: "Top Skills",
     skills: [
-      // TODO: confirm — taken from the "Current Focus" example in requirements
-      { name: "LangChain", icon: "langchain" },
-      { name: "LangGraph", icon: "langgraph" },
-      { name: "LangSmith", icon: "langsmith" },
+      { name: "Customer Service", icon: "" },
+      { name: "Teamwork", icon: "" },
+      { name: "New Business Development", icon: "" },
+      { name: "Financial Analysis", icon: "" },
+      { name: "Leadership", icon: "" },
     ],
   },
   {
     id: "frontend",
-    title: "Frontend",
+    title: "Sales & Outreach",
     skills: [
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs" },
-      { name: "JavaScript", icon: "javascript" },
-      // TODO: add more (e.g. HTML, CSS, Tailwind CSS, ...)
+      { name: "Sales", icon: "" },
+      { name: "Negotiation", icon: "" },
+      { name: "Objection Handling", icon: "" },
+      { name: "Lead Generation", icon: "" },
+      { name: "Cold Calling", icon: "" },
+      { name: "Appointment Setting", icon: "" },
     ],
   },
   {
     id: "backend",
-    title: "Backend",
+    title: "Leadership & Research",
     skills: [
-      { name: "Node.js", icon: "nodejs" },
-      // TODO: add more (e.g. Express, REST, ...)
+      { name: "Team Leader", icon: "" },
+      { name: "Call Center Development", icon: "" },
+      { name: "Data Analysis", icon: "" },
+      { name: "Search Engine Optimization (SEO)", icon: "" },
     ],
   },
   {
     id: "database",
-    title: "Database",
+    title: "Funding Products",
     skills: [
-      { name: "MySQL", icon: "mysql" },
-      // TODO: add more
+      { name: "Merchant Cash Advances (MCA)", icon: "" },
+      { name: "Lines of Credit (LOC)", icon: "" },
+      { name: "SBA Loans", icon: "" },
+      { name: "Term Loans", icon: "" },
+      { name: "Fix & Flip Financing", icon: "" },
     ],
   },
   {
     id: "tools",
-    title: "Tools & DevOps",
+    title: "Services",
     skills: [
-      // TODO: add tools (e.g. Git, GitHub, Docker, Vercel, ...)
-      { name: "TODO: tool", icon: "" },
+      { name: "Asset Recovery", icon: "" },
+      { name: "Researcher", icon: "" },
+      { name: "Virtual Assistant", icon: "" },
+      { name: "Closer", icon: "" },
+      { name: "Financial Advisory", icon: "" },
+      { name: "Appointment Scheduling", icon: "" },
+      { name: "Online Research", icon: "" },
+      { name: "Public Relations", icon: "" },
+      { name: "Executive Services", icon: "" },
+      { name: "Virtual Administrative Support", icon: "" },
+      { name: "Pharmacy Management", icon: "" },
     ],
   },
 ];

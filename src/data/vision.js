@@ -1,30 +1,41 @@
 // =============================================================================
 // VISION — where you are heading: mission, goals and current focus.
+// Built from Fahim Mostakin's own LinkedIn "About" and posts (Nov 2026).
 // =============================================================================
 
 export const vision = {
-  // 2–3 sentences. Wrap the key words in **double stars** to highlight them,
-  // e.g. "I want to make **AI tools** that small teams can actually use."
+  // 2–3 sentences. Wrap the key words in **double stars** to highlight them.
   mission:
-    "TODO: 2–3 sentences on where you are heading and what **problems** you want to solve.",
+    "I believe **continuous learning**, adaptability, and building **lasting client relationships** are the foundation of long-term success, and I am committed to growing my expertise within the **financial services** industry.",
 
   goals: {
     shortTerm: [
-      "TODO: short-term goal 1",
-      "TODO: short-term goal 2",
+      "Expand my knowledge of surplus funds and asset recovery.",
+      "Help clients understand and navigate the recovery process with integrity and transparency.",
     ],
     longTerm: [
-      "TODO: long-term goal 1",
-      "TODO: long-term goal 2",
+      "Grow my expertise within the financial services industry.",
+      "Keep building lasting client relationships through professionalism and strong communication.",
     ],
   },
 
   // What you are learning or building right now.
   // `icon` is a key from src/lib/skillIcons.js ("" = no icon).
-  // TODO: confirm — taken from the example in requirements.
   currentFocus: [
-    { name: "LangChain", icon: "langchain", note: "TODO: what you are doing with it" },
-    { name: "LangGraph", icon: "langgraph", note: "TODO: what you are doing with it" },
-    { name: "LangSmith", icon: "", note: "TODO: what you are doing with it" },
+    {
+      name: "Asset Recovery",
+      icon: "",
+      note: "Identifying and verifying unclaimed or surplus funds for eligible claimants.",
+    },
+    {
+      name: "Investigative Research",
+      icon: "",
+      note: "Analyzing public records, legal documents and property-related information.",
+    },
+    {
+      name: "Client Relationships",
+      icon: "",
+      note: "Guiding clients through the recovery process with confidentiality and accuracy.",
+    },
   ],
 };
