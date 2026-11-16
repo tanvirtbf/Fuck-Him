@@ -9,12 +9,12 @@
 // It NEVER breaks the build: any failure (old Node, no network, …) only logs a
 // warning and the committed public/og-image.png is kept.
 
-const CYAN = "#4FD5EE";
-const PURPLE = "#6F43D6";
-const NAVY = "#032972";
-const MINT = "#1BE6B7";
-const PINK = "#FF5C8D";
-const OLIVE = "#C9C86A";
+const CYAN = "#9CC8FF";
+const PURPLE = "#1F4FD6";
+const NAVY = "#0A1430";
+const MINT = "#4CC3FF";
+const PINK = "#2F6BFF";
+const OLIVE = "#7C8799";
 
 // Google serves TTF (which next/og can read) to this old user agent. `text=`
 // asks for one small font file with exactly the glyphs we draw.

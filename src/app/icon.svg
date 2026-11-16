@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Favicon: purple disc + mint ring + pink dot (Memphis mark, no initials so it never goes stale) -->
-  <circle cx="32" cy="32" r="32" fill="#6F43D6"/>
-  <circle cx="30" cy="34" r="14" fill="none" stroke="#1BE6B7" stroke-width="7"/>
-  <circle cx="47" cy="16" r="6" fill="#FF5C8D"/>
+  <!-- Favicon: blue disc + sky-blue ring + black dot (Memphis mark, no initials so it never goes stale) -->
+  <circle cx="32" cy="32" r="32" fill="#1F4FD6"/>
+  <circle cx="30" cy="34" r="14" fill="none" stroke="#9CC8FF" stroke-width="7"/>
+  <circle cx="47" cy="16" r="6" fill="#0B0D12"/>
 </svg>

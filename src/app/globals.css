@@ -17,20 +17,22 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Brand (fixed in both themes) */
-  --color-cyan: #4fd5ee; /* sampled */
-  --color-purple: #6f43d6; /* sampled — primary */
-  --color-indigo: #433a8b; /* sampled */
-  --color-mint: #1be6b7; /* sampled — "AI / active" highlight */
-  --color-navy: #032972; /* sampled */
-  --color-pink: #ff5c8d; /* estimated — shapes, borders, fills only */
-  --color-olive: #c9c86a; /* estimated — squiggles only */
-  --color-paper: #f8f8f6; /* sampled */
-  --color-ink: #111111;
+  /* Brand (fixed in both themes) — white / blue / black palette.
+     Token names are kept from the original demo so no component had to change:
+     "purple" is now the primary BLUE and "indigo" is now BLACK. */
+  --color-cyan: #9cc8ff; /* light blue — hero top, light shapes */
+  --color-purple: #1f4fd6; /* primary blue (About block, buttons) */
+  --color-indigo: #0b0d12; /* black (Experience block) */
+  --color-mint: #4cc3ff; /* bright sky blue — highlights, logo disc, active marks */
+  --color-navy: #0a1430; /* blue-black — footer, hero name */
+  --color-pink: #2f6bff; /* blue — shapes, borders, résumé button */
+  --color-olive: #7c8799; /* slate grey — squiggles only */
+  --color-paper: #f4f6fa; /* cool off-white */
+  --color-ink: #0b0d12;
 
   /* Muted text that passes WCAG AA on coloured blocks */
-  --color-lilac: #e6dcff; /* on purple: 4.65 */
-  --color-lavender: #c9c2f2; /* on indigo: 5.63 */
+  --color-lilac: #dde7ff; /* on blue #1f4fd6: 5.5 */
+  --color-lavender: #b9c2d3; /* on black #0b0d12: 10.9 */
 
   /* Layout */
   --container-site: 75rem; /* 1200px */
@@ -81,43 +83,43 @@
 /* Every text/background pair below is checked for WCAG AA (4.5:1). */
 :root,
 [data-theme="light"] {
-  --bg: #f8f8f6;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --tile: #ececea;
-  --fg: #111111;
-  --muted: #5c5c58; /* 6.32 on bg, 5.68 on tile */
-  --line: #e2e2de;
-  --accent: #6f43d6; /* white text on it: 6.09 */
+  --tile: #eef2f8;
+  --fg: #0b0d12;
+  --muted: #555e6e; /* 6.6 on bg, 6.0 on tile */
+  --line: #e1e6ef;
+  --accent: #1f4fd6; /* white text on it: 6.4 */
   --accent-fg: #ffffff;
-  --accent-text: #6f43d6; /* 5.72 on bg */
-  --pink-text: #c2255c; /* 5.32 on bg */
-  --mint-text: #08785f; /* 5.11 on bg */
-  --focus: #6f43d6;
+  --accent-text: #1f4fd6; /* 6.4 on bg */
+  --pink-text: #1f4fd6; /* 6.4 on bg */
+  --mint-text: #0b5fa8; /* 6.3 on bg */
+  --focus: #1f4fd6;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #0f0d24;
-  --surface: #1a1736;
-  --tile: #221f40;
-  --fg: #f4f3fa; /* 17.26 on bg */
-  --muted: #a9a6c4; /* 8.10 on bg, 6.68 on tile */
-  --line: #2e2a52;
-  --accent: #6f43d6;
+  --bg: #0b0d12;
+  --surface: #14171e;
+  --tile: #1b1f28;
+  --fg: #f3f5f9; /* 18 on bg */
+  --muted: #a3acbb; /* 8.5 on bg, 7.2 on tile */
+  --line: #272c37;
+  --accent: #1f4fd6;
   --accent-fg: #ffffff;
-  --accent-text: #a58bf0; /* 6.84 on bg */
-  --pink-text: #ff7aa2; /* 7.76 on bg */
-  --mint-text: #1be6b7; /* 11.83 on bg */
-  --focus: #a58bf0;
+  --accent-text: #7fa6ff; /* 8.0 on bg */
+  --pink-text: #7fa6ff; /* 8.0 on bg */
+  --mint-text: #4cc3ff; /* 9.5 on bg */
+  --focus: #7fa6ff;
   color-scheme: dark;
 }
 
-/* Focus ring colour on coloured blocks (purple/indigo/navy vs cyan/mint) */
+/* Focus ring colour on coloured blocks (blue/black/navy vs light blue) */
 .surface-dark {
   --focus: #ffffff;
 }
 .surface-bright {
-  --focus: #032972;
+  --focus: #0a1430;
 }
 
 @layer base {

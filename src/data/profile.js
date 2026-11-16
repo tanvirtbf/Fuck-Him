@@ -44,20 +44,20 @@ export const profile = {
   // cutout: true  → transparent-background photo (floats like in the demo)
   // cutout: false → normal photo with its background (shown as a framed photo)
   photos: {
-    // Hero: sits across the cyan/purple split
+    // Hero: sits across the light-blue/blue split
     hero: {
       src: "/images/hero.webp",
-      alt: "Portrait of Fahim Mostakin in a white shirt, black tie and glasses",
-      width: 480,
-      height: 600,
+      alt: "Portrait of Fahim Mostakin in a black cap, sunglasses and a white T-shirt",
+      width: 340,
+      height: 425,
       cutout: false,
     },
-    // About: shown inside the light-grey card
+    // About: shown beside the story
     about: {
       src: "/images/about.webp",
-      alt: "Portrait of Fahim Mostakin smiling outdoors in a white shirt and black tie",
-      width: 480,
-      height: 600,
+      alt: "Fahim Mostakin outdoors under a cloudy sky, wearing a black cap, sunglasses and a white T-shirt",
+      width: 440,
+      height: 550,
       cutout: false,
     },
   },
