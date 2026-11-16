@@ -97,29 +97,30 @@ export default function About() {
                 </ReadMore>
               )}
 
-              <dl className="mt-2 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/25 pt-6 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+              <dl
+                className={`mt-2 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/25 pt-6 ${
+                  openToWork ? "sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4" : "sm:grid-cols-3"
+                }`}
+              >
                 {facts.map((fact) => (
                   <div key={fact.label}>
                     <dt className="text-label font-semibold tracking-label text-lilac uppercase">{fact.label}</dt>
                     <dd className="mt-1.5 font-semibold">{fact.value}</dd>
                   </div>
                 ))}
-                <div>
-                  <dt className="text-label font-semibold tracking-label text-lilac uppercase">Status</dt>
-                  <dd className="mt-1.5 flex items-center gap-2 font-semibold">
-                    {openToWork ? (
-                      <>
-                        <span aria-hidden="true" className="relative flex size-2.5">
-                          <span className="absolute inline-flex size-full rounded-full bg-mint opacity-75 motion-safe:animate-ping" />
-                          <span className="relative inline-flex size-2.5 rounded-full bg-mint" />
-                        </span>
-                        Open to work
-                      </>
-                    ) : (
-                      "Not looking right now"
-                    )}
-                  </dd>
-                </div>
+                {/* Status is only shown when profile.openToWork is true */}
+                {openToWork && (
+                  <div>
+                    <dt className="text-label font-semibold tracking-label text-lilac uppercase">Status</dt>
+                    <dd className="mt-1.5 flex items-center gap-2 font-semibold">
+                      <span aria-hidden="true" className="relative flex size-2.5">
+                        <span className="absolute inline-flex size-full rounded-full bg-mint opacity-75 motion-safe:animate-ping" />
+                        <span className="relative inline-flex size-2.5 rounded-full bg-mint" />
+                      </span>
+                      Open to work
+                    </dd>
+                  </div>
+                )}
               </dl>
 
               <div>

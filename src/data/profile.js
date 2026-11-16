@@ -30,7 +30,7 @@ export const profile = {
   yearsOfExperience: "4+",
   location: "Mirpur, Dhaka, Bangladesh",
   currentRole: "Private Investigator, Full Circle Asset Recovery LLC",
-  openToWork: true, // true = shows "Open to work", false = "Not looking right now"
+  openToWork: false, // true = shows an "Open to work" status in About, false = hidden
 
   // About section — 2 to 4 short paragraphs (from the LinkedIn "About")
   bio: [
