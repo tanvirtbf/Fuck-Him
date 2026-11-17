@@ -2,8 +2,8 @@ import { profile } from "@/data/profile";
 import { cn } from "@/lib/cn";
 
 const tones = {
-  purple: "bg-purple text-white", // over the cyan hero (demo panel 1)
-  mint: "bg-mint text-ink", // on light / dark surfaces (demo panels 3–6)
+  purple: "bg-purple text-white", // navy disc
+  mint: "bg-mint text-ink", // gold disc (used in the floating navbar)
 };
 
 // Small round logo with initials. Links back to the top of the page.

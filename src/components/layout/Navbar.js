@@ -1,14 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Download } from "lucide-react";
 import { navLinks } from "@/data/navigation";
 import { profile } from "@/data/profile";
-import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import MobileMenu from "./MobileMenu";
+import ScrollProgress from "./ScrollProgress";
 import useScrollSpy from "./useScrollSpy";
 import { cn } from "@/lib/cn";
 
@@ -16,18 +16,44 @@ const MENU_ID = "mobile-menu";
 const sectionIds = navLinks.map((l) => l.id);
 
 /**
- * Sticky header. Three looks:
- *   "bright" — at the very top, over the cyan hero (navy text, purple logo)
- *   "solid"  — after scrolling (page background, mint logo, pink pill)
- *   "menu"   — mobile menu open (white text over the purple overlay)
+ * Floating "pill" header.
+ *   - Glass pill that gains a shadow once the page scrolls
+ *   - A navy highlight slides between links: it follows the section you are
+ *     reading, and previews the link under the mouse
+ *   - Gold reading-progress bar along the top edge
+ *   - Below lg: hamburger → full-screen navy menu (focus-trapped)
  */
 export default function Navbar() {
   const { scrolled, active } = useScrollSpy(sectionIds);
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(null);
+  const [indicator, setIndicator] = useState(null); // { left, width }
   const toggleRef = useRef(null);
   const panelRef = useRef(null);
+  const listRef = useRef(null);
+  const linkRefs = useRef({});
 
-  const tone = open ? "menu" : scrolled ? "solid" : "bright";
+  const highlighted = hovered ?? active;
+
+  // Move the sliding highlight under the highlighted link.
+  const measure = useCallback(() => {
+    const el = linkRefs.current[highlighted];
+    const list = listRef.current;
+    if (!el || !list) return setIndicator(null);
+    const a = el.getBoundingClientRect();
+    const b = list.getBoundingClientRect();
+    setIndicator({ left: a.left - b.left, width: a.width });
+  }, [highlighted]);
+
+  useLayoutEffect(() => {
+    measure();
+  }, [measure]);
+
+  useEffect(() => {
+    window.addEventListener("resize", measure);
+    document.fonts?.ready.then(measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [measure]);
 
   const closeMenu = useCallback((returnFocus = true) => {
     setOpen(false);
@@ -98,41 +124,65 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-          tone === "solid" && "border-line bg-bg/90 text-fg backdrop-blur-md",
-          tone === "bright" && "surface-bright border-transparent bg-transparent text-navy",
-          tone === "menu" && "surface-dark border-transparent bg-transparent text-white",
-        )}
-      >
-        <Container className="flex h-16 items-center justify-between gap-4 lg:h-20">
-          <Logo
-            tone={tone === "bright" ? "purple" : "mint"}
-            onClick={open ? () => closeMenu(false) : undefined}
-          />
+      <ScrollProgress />
 
-          {/* Desktop links */}
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-4 lg:pt-4">
+        <div
+          className={cn(
+            "mx-auto flex h-14 max-w-site items-center justify-between gap-3 rounded-full border pr-2 pl-1.5 transition-[background-color,box-shadow,border-color,height] duration-500 ease-out lg:h-16 lg:pl-2",
+            open
+              ? "border-transparent bg-transparent text-white shadow-none"
+              : scrolled
+                ? "border-line bg-bg/85 text-fg shadow-[0_14px_40px_-18px_rgba(10,26,51,0.45)] backdrop-blur-md lg:h-14"
+                : "border-navy/10 bg-bg/70 text-fg backdrop-blur-sm dark:border-white/10",
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <Logo tone="mint" onClick={open ? () => closeMenu(false) : undefined} />
+            <span
+              aria-hidden="true"
+              className="hidden text-sm font-extrabold tracking-wide uppercase sm:inline lg:hidden xl:inline"
+            >
+              {profile.name.first}
+              <span className="text-mint-text"> {profile.name.last}</span>
+            </span>
+          </div>
+
+          {/* Desktop links with a sliding highlight */}
           <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-5 xl:gap-7">
+            <ul ref={listRef} className="relative flex items-center gap-1" onMouseLeave={() => setHovered(null)}>
+              <li
+                aria-hidden="true"
+                className={cn(
+                  "pointer-events-none absolute top-1/2 h-10 -translate-y-1/2 rounded-full bg-purple shadow-[0_6px_18px_-8px_rgba(18,48,90,0.8)] transition-[left,width,opacity] duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] dark:bg-mint",
+                  indicator ? "opacity-100" : "opacity-0",
+                )}
+                style={indicator ? { left: indicator.left, width: indicator.width } : undefined}
+              />
               {navLinks.map((link) => {
                 const isActive = active === link.id;
+                const isLit = highlighted === link.id && indicator;
                 return (
-                  <li key={link.id}>
+                  <li key={link.id} className="relative">
                     <a
+                      ref={(el) => (linkRefs.current[link.id] = el)}
                       href={`#${link.id}`}
                       aria-current={isActive ? "true" : undefined}
-                      className="group relative inline-flex min-h-11 items-center text-label font-semibold tracking-[0.18em] uppercase"
+                      onMouseEnter={() => setHovered(link.id)}
+                      onFocus={() => setHovered(link.id)}
+                      onBlur={() => setHovered(null)}
+                      className={cn(
+                        "relative inline-flex h-10 items-center rounded-full px-4 text-label font-semibold tracking-[0.16em] uppercase transition-colors duration-300",
+                        isLit ? "text-white dark:text-ink" : "text-fg/80 hover:text-fg",
+                      )}
                     >
                       {link.label}
-                      <span
-                        aria-hidden="true"
-                        className={cn(
-                          "absolute inset-x-0 bottom-2 h-0.5 origin-left transition-transform duration-300",
-                          tone === "bright" ? "bg-navy" : "bg-mint",
-                          isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
-                        )}
-                      />
+                      {isActive && (
+                        <span
+                          aria-hidden="true"
+                          className="absolute bottom-1.5 left-1/2 size-1 -translate-x-1/2 rounded-full bg-mint dark:bg-ink"
+                        />
+                      )}
                     </a>
                   </li>
                 );
@@ -143,12 +193,8 @@ export default function Navbar() {
           <div className="flex items-center gap-1 sm:gap-2">
             <ThemeToggle />
             {/* Wrapper controls visibility; Button's own `inline-flex` would beat `hidden` */}
-            <div className="ml-2 hidden lg:block">
-              <Button
-                variant={tone === "bright" ? "outline-navy" : "outline"}
-                href={profile.resume}
-                download
-              >
+            <div className="hidden lg:block">
+              <Button variant="outline" href={profile.resume} download className="min-h-10 px-5">
                 <Download size={15} aria-hidden="true" />
                 <span>
                   <span className="hidden xl:inline">Download </span>Resume
@@ -164,7 +210,10 @@ export default function Navbar() {
               aria-expanded={open}
               aria-controls={MENU_ID}
               aria-label={open ? "Close menu" : "Open menu"}
-              className="inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-black/10 lg:hidden dark:hover:bg-white/10"
+              className={cn(
+                "inline-flex size-11 items-center justify-center rounded-full transition-colors lg:hidden",
+                open ? "bg-white/10 hover:bg-white/20" : "bg-purple text-white hover:bg-indigo dark:bg-mint dark:text-ink",
+              )}
             >
               <span aria-hidden="true" className="relative block h-3.5 w-5">
                 <span
@@ -175,7 +224,7 @@ export default function Navbar() {
                 />
                 <span
                   className={cn(
-                    "absolute top-1.5 left-0 h-0.5 w-5 bg-current transition-opacity duration-200",
+                    "absolute top-1.5 left-0 h-0.5 w-3.5 bg-current transition-opacity duration-200",
                     open && "opacity-0",
                   )}
                 />
@@ -188,7 +237,7 @@ export default function Navbar() {
               </span>
             </button>
           </div>
-        </Container>
+        </div>
       </header>
 
       {open && (

@@ -18,7 +18,7 @@ const bandShapes = [
   { type: "ring", right: "6%", y: "30%", size: 30, color: "text-cyan", delay: 1.5 },
 ];
 
-// Full-screen purple overlay menu for phones/tablets (below lg).
+// Full-screen navy overlay menu for phones/tablets (below lg). Links slide in one by one.
 // Opening/closing, focus trap and Escape are handled by <Navbar>.
 export default function MobileMenu({ id, panelRef, active, onNavigate }) {
   return (
@@ -37,7 +37,11 @@ export default function MobileMenu({ id, panelRef, active, onNavigate }) {
           {navLinks.map((link, i) => {
             const isActive = active === link.id;
             return (
-              <li key={link.id}>
+              <li
+                key={link.id}
+                className="motion-safe:animate-[menu-item-in_0.45s_cubic-bezier(0.2,0.7,0.2,1)_both]"
+                style={{ animationDelay: `${60 + i * 55}ms` }}
+              >
                 <a
                   href={`#${link.id}`}
                   onClick={(e) => onNavigate(e, link.id)}

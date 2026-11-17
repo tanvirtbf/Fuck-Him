@@ -17,21 +17,22 @@
   --color-white: #ffffff;
   --color-black: #000000;
 
-  /* Brand (fixed in both themes) — white / blue / black palette.
+  /* Brand (fixed in both themes) — "trust & finance" palette:
+     deep navy + white + near-black, with a muted gold accent.
      Token names are kept from the original demo so no component had to change:
-     "purple" is now the primary BLUE and "indigo" is now BLACK. */
-  --color-cyan: #9cc8ff; /* light blue — hero top, light shapes */
-  --color-purple: #1f4fd6; /* primary blue (About block, buttons) */
+     "purple" = primary NAVY, "indigo" = BLACK, "mint" = GOLD accent. */
+  --color-cyan: #dfe7f1; /* light steel blue — hero top, light shapes */
+  --color-purple: #12305a; /* primary navy (About block, buttons) — white on it: 13.2 */
   --color-indigo: #0b0d12; /* black (Experience block) */
-  --color-mint: #4cc3ff; /* bright sky blue — highlights, logo disc, active marks */
-  --color-navy: #0a1430; /* blue-black — footer, hero name */
-  --color-pink: #2f6bff; /* blue — shapes, borders, résumé button */
-  --color-olive: #7c8799; /* slate grey — squiggles only */
-  --color-paper: #f4f6fa; /* cool off-white */
+  --color-mint: #c9a24b; /* muted gold — highlights, logo disc, active marks */
+  --color-navy: #0a1a33; /* blue-black — footer, hero name (13.9 on hero top) */
+  --color-pink: #c9a24b; /* gold — shapes, borders, résumé button */
+  --color-olive: #8a93a3; /* slate grey — squiggles only */
+  --color-paper: #f5f7fa; /* cool off-white */
   --color-ink: #0b0d12;
 
   /* Muted text that passes WCAG AA on coloured blocks */
-  --color-lilac: #dde7ff; /* on blue #1f4fd6: 5.5 */
+  --color-lilac: #c8d4e6; /* on navy #12305a: 8.8 */
   --color-lavender: #b9c2d3; /* on black #0b0d12: 10.9 */
 
   /* Layout */
@@ -89,12 +90,12 @@
   --fg: #0b0d12;
   --muted: #555e6e; /* 6.6 on bg, 6.0 on tile */
   --line: #e1e6ef;
-  --accent: #1f4fd6; /* white text on it: 6.4 */
+  --accent: #12305a; /* white text on it: 13.2 */
   --accent-fg: #ffffff;
-  --accent-text: #1f4fd6; /* 6.4 on bg */
-  --pink-text: #1f4fd6; /* 6.4 on bg */
-  --mint-text: #0b5fa8; /* 6.3 on bg */
-  --focus: #1f4fd6;
+  --accent-text: #12305a; /* 13.2 on bg */
+  --pink-text: #7a5a14; /* gold, AA-safe: 6.4 on bg */
+  --mint-text: #7a5a14; /* 6.4 on bg, 5.7 on tile */
+  --focus: #12305a;
   color-scheme: light;
 }
 
@@ -105,33 +106,33 @@
   --fg: #f3f5f9; /* 18 on bg */
   --muted: #a3acbb; /* 8.5 on bg, 7.2 on tile */
   --line: #272c37;
-  --accent: #1f4fd6;
+  --accent: #12305a;
   --accent-fg: #ffffff;
-  --accent-text: #7fa6ff; /* 8.0 on bg */
-  --pink-text: #7fa6ff; /* 8.0 on bg */
-  --mint-text: #4cc3ff; /* 9.5 on bg */
-  --focus: #7fa6ff;
+  --accent-text: #9fb9dc; /* 9.7 on bg */
+  --pink-text: #d8b45a; /* 9.8 on bg */
+  --mint-text: #d8b45a; /* 9.8 on bg */
+  --focus: #d8b45a;
   color-scheme: dark;
 }
 
-/* Focus ring colour on coloured blocks (blue/black/navy vs light blue) */
+/* Focus ring colour on coloured blocks (navy/black vs light steel / gold) */
 .surface-dark {
   --focus: #ffffff;
 }
 .surface-bright {
-  --focus: #0a1430;
+  --focus: #0a1a33;
 }
 
 @layer base {
   /* scroll-padding keeps anchor jumps AND keyboard focus clear of the fixed
-     header (h-16 / lg:h-20), so a focused link is never hidden under it. */
+     floating header pill (about 68px / lg 80px), so a focused link is never hidden under it. */
   html {
     scroll-behavior: smooth; /* turned off by the reduced-motion block below */
-    scroll-padding-top: 4rem;
+    scroll-padding-top: 5rem;
   }
   @media (min-width: 64rem) {
     html {
-      scroll-padding-top: 5rem;
+      scroll-padding-top: 6rem;
     }
   }
 
@@ -168,6 +169,18 @@
   from {
     opacity: 0;
     transform: translate3d(0, -12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mobile menu links slide in one after another (delay set inline) */
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
   }
   to {
     opacity: 1;
